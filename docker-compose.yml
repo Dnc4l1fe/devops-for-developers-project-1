@@ -15,8 +15,8 @@ services:
     depends_on:
       db:
         condition: service_healthy  # Ждём готовности БД
-    volumes:                        # <--- ДОБАВИЛИ ЭТУ СТРОКУ
-      - ./config:/app/config        # <--- И ЭТУ (монтируем папку config)
+    volumes:                        
+      ./app/config:/app/config
     networks:
       - app-network
 
