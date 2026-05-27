@@ -1,0 +1,15 @@
+# Корень проекта
+node_modules
+npm-debug.log
+.git
+*.md
+.env*
+.vscode
+.idea
+.github
+!app/
+
+# Артефакты сборки
+dist
+build
+*.log
