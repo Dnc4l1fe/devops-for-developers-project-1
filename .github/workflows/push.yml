@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: mamboota/devops-for-developers-project-74
+  IMAGE_NAME: Dnc4l1fe/devops-for-developers-project-1
 
 jobs:
   # 🔹 Этап 1: Запуск тестов через Docker Compose
