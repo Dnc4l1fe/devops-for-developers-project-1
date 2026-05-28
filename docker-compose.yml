@@ -16,7 +16,8 @@ services:
       db:
         condition: service_healthy  # Ждём готовности БД
     volumes:                        
-      ./app/config:/app/config
+      - ./app/config:/app/config
+    
     networks:
       - app-network
 

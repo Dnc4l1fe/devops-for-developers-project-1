@@ -12,7 +12,8 @@ RUN apk add --no-cache --virtual .build-deps \
     libc-dev \
     py3-setuptools
 
-COPY app/package*.json ./
+COPY ./app/config/config.cjs ./app/config/config.json
+
 RUN npm install
 
 # Удаляем build-зависимости
