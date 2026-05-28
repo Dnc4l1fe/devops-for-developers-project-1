@@ -1,5 +1,4 @@
 // @ts-check
-
 import {
   describe, beforeAll, expect, test, afterAll
 } from '@jest/globals';
@@ -7,9 +6,8 @@ import {
 import fastify from 'fastify';
 import init from '../server/plugin.js';
 
-
 // TODO: сейчас каждый тест оставляет после себя артефакты в БД
-// попытатся использовать транзакции или перед каждым тестом очищать БД
+// попытаться использовать транзакции или перед каждым тестом очищать БД
 
 describe('requests', () => {
   let app;
@@ -191,9 +189,5 @@ describe('requests', () => {
   afterAll(async () => {
     await app.close();
   });
-<<<<<<< Updated upstream
 });
-=======
-});
-//
->>>>>>> Stashed changes
+
