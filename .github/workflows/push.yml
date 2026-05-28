@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: Dnc4l1fe/devops-for-developers-project-1
+  IMAGE_NAME: mamboota/devops-for-developers-project-74
 
 jobs:
   # 🔹 Этап 1: Запуск тестов через Docker Compose
@@ -46,7 +46,7 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v4
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract metadata for Docker
