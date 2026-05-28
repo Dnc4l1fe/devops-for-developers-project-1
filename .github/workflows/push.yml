@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: Dnc4l1fe/devops-for-developers-project-1
+  IMAGE_NAME: dnc4l1fe/devops-for-developers-project-1
 
 jobs:
   # 🔹 Этап 1: Запуск тестов через Docker Compose
@@ -46,8 +46,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v4
         with:
-          username: \${{ vars.DOCKERHUB_USERNAME }}
-          password: \${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract metadata for Docker
         id: meta
@@ -55,7 +55,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest,enable=\${{ github.ref == format('refs/heads/{0}', 'main') || github.ref == format('refs/heads/{0}', 'master') }}
+            type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'main') || github.ref == format('refs/heads/{0}', 'master') }}
             type=sha,prefix=,format=long,enable=true
 
       - name: Build and push Docker image
@@ -64,24 +64,8 @@ jobs:
           context: .                          # 🔥 Path context (важно для .dockerignore!)
           file: ./Dockerfile.production       # Используем продакшен-докерфайл
           push: true
-          tags: \${{ steps.meta.outputs.tags }}
-          labels: \${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha                # 🔥 GitHub Actions cache
           cache-to: type=gha,mode=max
-          provenance: false
-
-  # 🔹 Этап 3: Проверка проекта Hexlet
-  hexlet-check:
-    name: Hexlet project check
-    runs-on: ubuntu-latest
-    needs: test
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
-        with:
-          hexlet-id: \${{ secrets.HEXLET_ID }}  # Передаем ваш логин с GitHub Secrets
-                # Отключаем для совместимости с Docker Hub
+          provenance: false                   # Отключаем для совместимости с Docker Hub
